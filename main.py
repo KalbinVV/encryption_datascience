@@ -1,20 +1,17 @@
-import json
+import pandas as pd
 
-from Experiment.AESExperiment import AESExperiment
-from Experiment.ExperimentsCollection import ExperimentsCollection
-from Experiment.Rc4Experiment import Rc4Experiment
-from Experiment.Salsa20Experiment import Salsa20Experiment
+from Experiment.ExperimentEnum import ExperimentEnum
+from Experiment.ExperimentsPolygon import ExperimentsPolygon
 
-key = b'Hello, worlderf!'
-message = b'Hello, message!'
-
-experiments_collection = ExperimentsCollection(
-    experiments=[
-        Rc4Experiment(key, message, duration_multiplier=1000),
-        Salsa20Experiment(key, message, duration_multiplier=1000),
-        AESExperiment(key, message, duration_multiplier=1000)
+experiments_polygon = ExperimentsPolygon(
+    [
+        ExperimentEnum.Blowfish
     ],
-    amount_of_experiments=5
+    amount_of_experiments=1,
+    max_power_of_two=10,
+    max_length_of_message=1000,
+    duration_multiplier=1000
 )
 
-print(json.dumps(experiments_collection.process(), indent=4))
+df = pd.DataFrame(experiments_polygon.process())
+print(df)
