@@ -11,7 +11,7 @@ class BlowfishExperiment(Experiment):
         self.__key = key
 
     def get_cipher(self) -> Cipher:
-        return Blowfish.new(self.__key, Blowfish.MODE_CBC)
+        return Blowfish.new(self.__key, Blowfish.MODE_EAX)
 
     def get_fields_names(self) -> tuple:
         return 'BlowFish, Crypt', 'BlowFish, Decrypt'

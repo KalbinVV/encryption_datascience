@@ -5,10 +5,13 @@ from Experiment.ExperimentsPolygon import ExperimentsPolygon
 
 experiments_polygon = ExperimentsPolygon(
     [
-        ExperimentEnum.Blowfish
+        ExperimentEnum.Rc4,
+        ExperimentEnum.Salsa20,
+        ExperimentEnum.Blowfish,
+        ExperimentEnum.AES
     ],
-    amount_of_experiments=1,
-    max_power_of_two=10,
+    keys_length_array=[32],
+    amount_of_experiments=100,
     max_length_of_message=1000,
     duration_multiplier=1000
 )
