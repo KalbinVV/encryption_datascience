@@ -28,7 +28,7 @@ class ExperimentsPolygon:
             message_length = random.randint(1, self.__max_length_of_message + 1)
             message = Crypto.Random.get_random_bytes(message_length)
 
-            key_length = self.__keys_length_array[0]
+            key_length = self.__keys_length_array[random.randint(0, len(self.__keys_length_array) - 1)]
             key = Crypto.Random.get_random_bytes(key_length)
 
             result_dictionary[size_of_message_field].append(len(message))
