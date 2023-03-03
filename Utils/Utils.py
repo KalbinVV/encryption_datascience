@@ -1,27 +1,30 @@
 class Utils:
-    # TODO: Optimise
     @staticmethod
     def union_dicts(first_dict: dict, second_dict: dict):
-        final_dict = dict()
+        if len(first_dict) == 0:
+            return second_dict
+        elif len(second_dict) == 0:
+            return first_dict
 
-        for key, value in first_dict.items():
-            if key not in second_dict:
-                final_dict[key] = value
+        joint_dictionary = first_dict | second_dict
 
-        for key, value in second_dict.items():
-            if key not in first_dict:
-                final_dict[key] = value
+        for key in joint_dictionary.keys():
+            if key in second_dict and key in first_dict:
+                array_of_values = []
 
-        for key, value in first_dict.items():
-            if key in second_dict:
-                if not (isinstance(value, list) or isinstance(second_dict[key], list)):
-                    final_dict[key] = [value, second_dict[key]]
+                first_value = first_dict[key]
+                second_value = second_dict[key]
+
+                if isinstance(first_value, list):
+                    array_of_values.extend(first_value)
                 else:
-                    if isinstance(value, list) and isinstance(second_dict[key], list):
-                        final_dict[key] = [*value, *second_dict[key]]
-                    elif isinstance(value, list):
-                        final_dict[key] = [*value, second_dict[key]]
-                    else:
-                        final_dict[key] = [value, *second_dict[key]]
+                    array_of_values.append(first_value)
 
-        return final_dict
+                if isinstance(second_value, list):
+                    array_of_values.extend(second_value)
+                else:
+                    array_of_values.append(second_value)
+
+                joint_dictionary[key] = array_of_values
+
+        return joint_dictionary
