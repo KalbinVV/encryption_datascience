@@ -2,6 +2,7 @@ import json
 
 from flask import Flask, render_template, request
 import jinja2
+import pandas as pd
 
 from Experiment.ExperimentEnum import ExperimentEnum
 from Experiment.ExperimentsPolygon import ExperimentsPolygon
@@ -32,10 +33,12 @@ def process_form():
 
     experiments_result = experiment_polygon.process()
 
+    data_frame = pd.DataFrame(experiments_result)
+
     result_data = {
         'data': experiments_result,
         'normalized': Utils.normalize(experiments_result),
-        'characteristic': Utils.get_characteristic_of_dictionary(experiments_result)
+        'characteristic': data_frame.describe().to_dict()
     }
 
     return json.dumps(result_data)
