@@ -29,6 +29,18 @@ def process_form():
         amount_of_experiments = form_data['amount_of_experiments']
         duration_multiplier = form_data['duration_multiplier']
 
+        if amount_of_experiments > 1000:
+            return json.dumps({
+                'status': False,
+                'error': 'Системное ограничение в количество испытаний (<= 1.000)'
+            })
+
+        if max_message_length > 100000:
+            return json.dumps({
+                'status': False,
+                'error': 'Системное ограничение в максимальную длину строки (<100.000)'
+            })
+
         experiment_polygon = ExperimentsPolygon(modes, amount_of_experiments, keys_lengths,
                                                 max_message_length, duration_multiplier)
 
