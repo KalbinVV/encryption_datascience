@@ -14,4 +14,4 @@ class AESCFBExperiment(Experiment):
         return AES.new(self.__key, AES.MODE_CFB)
 
     def get_fields_names(self) -> tuple:
-        return 'AES MODE_CFB, crypt time (ms)', 'AES MODE_CFB, decrypt time (ms)'
+        return 'AES MODE_CFB, Время шифрования (с)', 'AES MODE_CFB, Время расшифрования (с)'

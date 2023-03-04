@@ -14,4 +14,4 @@ class AESSIVExperiment(Experiment):
         return AES.new(self.__key, AES.MODE_SIV)
 
     def get_fields_names(self) -> tuple:
-        return 'AES MODE_SIV, crypt time (ms)', 'AES MODE_SIV, decrypt time (ms)'
+        return 'AES MODE_SIV, Время шифрования (с)', 'AES MODE_SIV, Время расшифрования (с)'

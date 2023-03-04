@@ -16,8 +16,8 @@ class ExperimentsPolygon:
         self.__keys_length_array = keys_length_array
 
     def process(self):
-        size_of_key_field = 'Size of key'
-        size_of_message_field = 'Size of message'
+        size_of_key_field = 'Размер ключа (биты)'
+        size_of_message_field = 'Размер сообщения (биты)'
 
         result_dictionary = {
             size_of_key_field: [],

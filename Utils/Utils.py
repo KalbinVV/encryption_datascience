@@ -1,5 +1,6 @@
 import copy
 
+import pandas as pd
 
 class Utils:
     @staticmethod
@@ -51,8 +52,16 @@ class Utils:
     def get_characteristic_of_dictionary(dictionary):
         characteristic_dictionary = {}
 
+        data_frame = pd.DataFrame(dictionary)
+        dispersion = data_frame.var()
+
         for key, value in dictionary.items():
-            characteristic_dictionary[f'Min({key})'] = [min(value)]
-            characteristic_dictionary[f'Max({key})'] = [max(value)]
+            series = pd.Series(value)
+
+            characteristic_dictionary[f'Мин.({key})'] = [min(value)]
+            characteristic_dictionary[f'Макс.({key})'] = [max(value)]
+            characteristic_dictionary[f'Ср.({key})'] = [series.mean()]
+            characteristic_dictionary[f'Ср. отклонение({key})'] = [series.std()]
+            characteristic_dictionary[f'Дисперсия({key})'] = [dispersion[key]]
 
         return characteristic_dictionary

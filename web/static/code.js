@@ -107,8 +107,8 @@ $(document).ready(function(){
 
 		        $('#data_block').append(convertDictionaryToTable(data['data']))
 		        $('#normalized_data_block').append(convertDictionaryToTable(data['normalized']))
-		        //$('#characteristic_data_block').append(convertDictionaryToTable(data['characteristic']))
-		        console.log(data['characteristic'])
+		        $('#characteristic_data_block').append(convertDictionaryToTable(data['characteristic']))
+		        $('#correlation_data_block').append(data['correlation'])
 		    }
 		})
 	})

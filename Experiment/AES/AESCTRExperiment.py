@@ -14,4 +14,4 @@ class AESCTRExperiment(Experiment):
         return AES.new(self.__key, AES.MODE_CTR)
 
     def get_fields_names(self) -> tuple:
-        return 'AES MODE_CTR, crypt time (ms)', 'AES MODE_CTR, decrypt time (ms)'
+        return 'AES MODE_CTR, Время шифрования (с)', 'AES MODE_CTR, Время расшифрования (с)'

@@ -38,7 +38,8 @@ def process_form():
     result_data = {
         'data': experiments_result,
         'normalized': Utils.normalize(experiments_result),
-        'characteristic': data_frame.describe().to_dict()
+        'characteristic': Utils.get_characteristic_of_dictionary(experiments_result),
+        'correlation': data_frame.corr().to_dict()
     }
 
     return json.dumps(result_data)

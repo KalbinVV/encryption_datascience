@@ -14,4 +14,4 @@ class AESEAXExperiment(Experiment):
         return AES.new(self.__key, AES.MODE_EAX)
 
     def get_fields_names(self) -> tuple:
-        return 'AES MODE_EAX, crypt time (ms)', 'AES MODE_EAX, decrypt time (ms)'
+        return 'AES MODE_EAX, Время шифрования (с)', 'AES MODE_EAX, Время расшифрования (с)'
