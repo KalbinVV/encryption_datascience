@@ -1,5 +1,6 @@
 import copy
 
+import numpy as np
 import pandas as pd
 
 class Utils:
@@ -58,10 +59,13 @@ class Utils:
         for key, value in dictionary.items():
             series = pd.Series(value)
 
-            characteristic_dictionary[f'Мин.({key})'] = [min(value)]
-            characteristic_dictionary[f'Макс.({key})'] = [max(value)]
-            characteristic_dictionary[f'Ср.({key})'] = [series.mean()]
-            characteristic_dictionary[f'Ср. отклонение({key})'] = [series.std()]
-            characteristic_dictionary[f'Дисперсия({key})'] = [dispersion[key]]
+            characteristic_dictionary[f'Мин. ({key})'] = [min(value)]
+            characteristic_dictionary[f'Макс. ({key})'] = [max(value)]
+            characteristic_dictionary[f'Мода {key}'] = [float(series.mode()[0])]
+            characteristic_dictionary[f'Медиана ({key})'] = [series.median()]
+            characteristic_dictionary[f'Ср. арифметическое ({key})'] = [series.mean()]
+            characteristic_dictionary[f'Ср. отклонение ({key})'] = [series.std()]
+            characteristic_dictionary[f'Ср. геометрическое ({key})'] = [np.exp(np.log(value).mean())]
+            characteristic_dictionary[f'Дисперсия ({key})'] = [dispersion[key]]
 
         return characteristic_dictionary

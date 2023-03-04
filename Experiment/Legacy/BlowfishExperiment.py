@@ -14,4 +14,4 @@ class BlowfishExperiment(Experiment):
         return Blowfish.new(self.__key, Blowfish.MODE_EAX)
 
     def get_fields_names(self) -> tuple:
-        return 'BlowFish, Crypt', 'BlowFish, Decrypt'
+        return 'BlowFish, Время шифрования (с)', 'BlowFish, Время расшифрования (с)'

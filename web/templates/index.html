@@ -3,14 +3,14 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>AES cryptography</title>
+	<title>Cryptography datascience</title>
 	<script type="text/javascript" src='https://code.jquery.com/jquery-3.6.3.min.js'></script>
 	<script type="text/javascript" src='static/code.js'></script>
 	<link rel="stylesheet" type="text/css" href="static/style.css">
 </head>
 <body>
 <form id='experiment_form' method='get'>
-	<h3 class='legend'>Выберете режимы криптографии AES</h3>
+	<h3 class='legend'>Выберите алгоритмы шифрования</h3>
 	<div id='selections_list'></div>
 	<p class='legend'>Допустимые размеры ключей (через запятую)</p>
 	<input type="input" name="keys_lengths" id='keys_lengths' class='experiment_input' value='16,24,32'>
@@ -22,6 +22,14 @@
 	<input type="input" name="duration_multiplier" id='duration_multiplier' class='experiment_input' value='1000'>
 	<input type='submit' class='legend' value='Сформировать отчет'>
 </form>
+<div id='waiting_block' style='display: none;' class='legend'>
+	<h3>Пожалуйста, подождите...</h3>
+	<p>Время формирования отчета зависит от параметров.</p>
+</div>
+<div id='error_block' style='display: none;' class='legend'>
+	<h3>Во время формирования отчета произошла ошибка</h3>
+	<p id='error_content'></p>
+</div>
 <div id='result_block' style='display: none;'>
 	<h3 class='legend'>Полученные данные:</h3>
 	<div id='data_block'></div>

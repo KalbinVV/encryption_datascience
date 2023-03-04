@@ -14,4 +14,4 @@ class Rc4Experiment(Experiment):
         return ARC2.new(self.__key, ARC2.MODE_CFB)
 
     def get_fields_names(self) -> tuple:
-        return 'RC4, Crypt', 'RC4, Decrypt'
+        return 'RC4, Время шифрования (с)', 'RC4, Время расшифрования (с)'

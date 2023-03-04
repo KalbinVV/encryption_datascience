@@ -14,4 +14,4 @@ class ChaCha20Experiment(Experiment):
         return ChaCha20.new(key=self.__key)
 
     def get_fields_names(self) -> tuple:
-        return 'ChaCha20, Encrypt', 'ChaCha20, Decrypt'
+        return 'ChaCha20, Время шифрования (с)', 'ChaCha20, Время расшифрования (с)'

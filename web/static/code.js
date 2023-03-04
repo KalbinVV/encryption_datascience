@@ -1,7 +1,9 @@
 $(document).ready(function(){
 	(function fillSelectionsList() {
-		const modes = ['ECB', 'CBC', 'CFB', 'OFB', 'CTR', 'OpenPGB', 'CCM', 'EAX', 'SIV', 'GCM', 'OCB']
-		const disabled_modes = ['ECB', 'CBC', 'SIV']
+		const modes = ['AES_ECB', 'AES_CBC', 'AES_CFB', 'AES_OFB',
+		               'AES_CTR', 'AES_OpenPGB', 'AES_CCM', 'AES_EAX',
+		               'AES_SIV', 'AES_GCM', 'AES_OCB', 'Rc4', 'Blowfish', 'ChaCha20', 'Salsa20']
+		const disabled_modes = ['AES_ECB', 'AES_CBC', 'AES_SIV', 'ChaCha20', 'Salsa20']
 
 		const selections_list = $('#selections_list')
 
@@ -14,10 +16,12 @@ $(document).ready(function(){
 
 			mode_input.setAttribute('type', 'checkbox')
 			mode_input.setAttribute('id', 'selection_' + mode)
-			mode_input.setAttribute('name', 'AES_' + mode)
+			mode_input.setAttribute('name', mode)
 
 			if(!disabled_modes.includes(mode)){
 				mode_input.setAttribute('checked', true)
+			} else {
+			    mode_label.setAttribute('class', 'unsupported_mode')
 			}
 
 			mode_label.setAttribute('for', mode)
@@ -94,21 +98,27 @@ $(document).ready(function(){
 			})
 		}
 
+        $('#experiment_form').hide()
+        $('#waiting_block').show()
+
 		$.ajax({
 		    url: '/process_form',
 		    data: form_data,
 		    success: function(json_data) {
-		        $('#experiment_form').hide()
-		        $('#result_block').show()
+		        $('#waiting_block').hide()
 
 		        data = JSON.parse(json_data)
 
-		        console.log(data)
-
-		        $('#data_block').append(convertDictionaryToTable(data['data']))
-		        $('#normalized_data_block').append(convertDictionaryToTable(data['normalized']))
-		        $('#characteristic_data_block').append(convertDictionaryToTable(data['characteristic']))
-		        $('#correlation_data_block').append(data['correlation'])
+		        if(data['status'] == false) {
+		            $('#error_block').show()
+		            $('#error_content').html(data['error'])
+		        } else {
+		            $('#result_block').show()
+		            $('#data_block').append(convertDictionaryToTable(data['data']))
+		            $('#normalized_data_block').append(convertDictionaryToTable(data['normalized']))
+		            $('#characteristic_data_block').append(convertDictionaryToTable(data['characteristic']))
+		            $('#correlation_data_block').append(data['correlation'])
+		        }
 		    }
 		})
 	})

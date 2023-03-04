@@ -65,3 +65,7 @@ td {
     overflow:scroll;
     padding: 10px;
 }
+
+.unsupported_mode:after {
+    content: ' [Экспериментальная функция]'
+}

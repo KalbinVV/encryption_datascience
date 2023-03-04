@@ -14,4 +14,4 @@ class Salsa20Experiment(Experiment):
         return Salsa20.new(self.__key)
 
     def get_fields_names(self) -> tuple:
-        return 'Salsa20, Encrypt', 'Salsa20, Decrypt'
+        return 'Salsa20, Время шифрования (с)', 'Salsa20, Время расшифрвания (с)'
