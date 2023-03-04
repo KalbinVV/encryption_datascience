@@ -1,3 +1,6 @@
+import copy
+
+
 class Utils:
     @staticmethod
     def union_dicts(first_dict: dict, second_dict: dict):
@@ -9,7 +12,7 @@ class Utils:
         joint_dictionary = first_dict | second_dict
 
         for key in joint_dictionary.keys():
-            if key in second_dict and key in first_dict:
+            if (key in first_dict) and (key in second_dict):
                 array_of_values = []
 
                 first_value = first_dict[key]
@@ -28,3 +31,28 @@ class Utils:
                 joint_dictionary[key] = array_of_values
 
         return joint_dictionary
+
+    @staticmethod
+    def normalize(dictionary):
+        normalized_dictionary = copy.deepcopy(dictionary)
+
+        for key, value in normalized_dictionary.items():
+            minimal_value = min(value)
+            maximum_value = max(value)
+
+            difference = maximum_value - minimal_value
+
+            for i in range(len(value)):
+                value[i] = (value[i] - minimal_value) / difference
+
+        return normalized_dictionary
+
+    @staticmethod
+    def get_characteristic_of_dictionary(dictionary):
+        characteristic_dictionary = {}
+
+        for key, value in dictionary.items():
+            characteristic_dictionary[f'Min({key})'] = [min(value)]
+            characteristic_dictionary[f'Max({key})'] = [max(value)]
+
+        return characteristic_dictionary

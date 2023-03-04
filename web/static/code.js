@@ -42,7 +42,38 @@ $(document).ready(function(){
 		return selected_modes
 	}
 
-	$('#selections_block').submit(function(e){
+	function convertDictionaryToTable(dictionary) {
+	    const table_view = document.createElement('div')
+	    table_view.setAttribute('class', 'table_view')
+
+	    const table = document.createElement('table')
+
+	    table_view.append(table)
+
+	    const keys = Object.keys(dictionary)
+
+	    for(key in keys) {
+	        const key_name = keys[key]
+	        const row = document.createElement('tr')
+	        const row_name = document.createElement('td')
+
+	        row_name.innerHTML = key_name
+
+	        row.append(row_name)
+
+	        dictionary[key_name].forEach((data) => {
+	            const data_td = document.createElement('td')
+	            data_td.innerHTML = data
+	            row.append(data_td)
+	        })
+
+	        table.append(row)
+	    }
+
+	    return table_view
+	}
+
+	$('#experiment_form').submit(function(e){
 		e.preventDefault()
 
 		const selected_modes = getSelectedModes()
@@ -66,8 +97,17 @@ $(document).ready(function(){
 		$.ajax({
 		    url: '/process_form',
 		    data: form_data,
-		    success: function(data) {
-		        document.write(data)
+		    success: function(json_data) {
+		        $('#experiment_form').hide()
+		        $('#result_block').show()
+
+		        data = JSON.parse(json_data)
+
+		        console.log(data)
+
+		        $('#data_block').append(convertDictionaryToTable(data['data']))
+		        $('#normalized_data_block').append(convertDictionaryToTable(data['normalized']))
+		        $('#characteristic_data_block').append(convertDictionaryToTable(data['characteristic']))
 		    }
 		})
 	})

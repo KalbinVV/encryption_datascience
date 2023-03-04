@@ -39,67 +39,40 @@ class ExperimentEnum(Enum):
     # Make it more readable, may new enum in python3.10
     @classmethod
     def from_string(cls, value):
-        if value == 'Blowfish':
-            return cls.Blowfish
-        elif value == 'ChaCha20':
-            return cls.ChaCha20
-        elif value == 'Rc4':
-            return cls.Rc4
-        elif value == 'Salsa20':
-            return cls.Salsa20
-        elif value == 'AES_ECB':
-            return cls.AES_ECB
-        elif value == 'AES_CBC':
-            return cls.AES_CBC
-        elif value == 'AES_CFB':
-            return cls.AES_CFB
-        elif value == 'AES_OFB':
-            return cls.AES_OFB
-        elif value == 'AES_CTR':
-            return cls.AES_CTR
-        elif value == 'AES_OpenPGB':
-            return cls.AES_OpenPGB
-        elif value == 'AES_CCM':
-            return cls.AES_CCM
-        elif value == 'AES_EAX':
-            return cls.AES_EAX
-        elif value == 'AES_SIV':
-            return cls.AES_SIV
-        elif value == 'AES_GCM':
-            return cls.AES_GCM
-        elif value == 'AES_OCB':
-            return cls.AES_OCB
+        return {
+            'Blowfish': cls.Blowfish,
+            'ChaCha20': cls.ChaCha20,
+            'Rc4': cls.Rc4,
+            'Salsa20': cls.Salsa20,
+            'AES_ECB': cls.AES_ECB,
+            'AES_CBC': cls.AES_CBC,
+            'AES_CFB': cls.AES_CFB,
+            'AES_OFB': cls.AES_OFB,
+            'AES_CTR': cls.AES_CTR,
+            'AES_OpenPGB': cls.AES_OpenPGB,
+            'AES_CCM': cls.AES_CCM,
+            'AES_EAX': cls.AES_EAX,
+            'AES_SIV': cls.AES_SIV,
+            'AES_GCM': cls.AES_GCM,
+            'AES_OCB': cls.AES_OCB
+        }[value]
 
-    # Make it more readable, may new enum in python3.10
     @classmethod
     def from_enum(cls, value):
-        if value == cls.Blowfish:
-            return BlowfishExperiment
-        elif value == cls.ChaCha20:
-            return ChaCha20Experiment
-        elif value == cls.Rc4:
-            return Rc4Experiment
-        elif value == cls.Salsa20:
-            return Salsa20Experiment
-        elif value == cls.AES_ECB:
-            return AESECBExperiment
-        elif value == cls.AES_CBC:
-            return AESCBCExperiment
-        elif value == cls.AES_CFB:
-            return AESCFBExperiment
-        elif value == cls.AES_OFB:
-            return AESOFBExperiment
-        elif value == cls.AES_CTR:
-            return AESCTRExperiment
-        elif value == cls.AES_OpenPGB:
-            return AESOpenPGBExperiment
-        elif value == cls.AES_CCM:
-            return AESCCMExperiment
-        elif value == cls.AES_EAX:
-            return AESEAXExperiment
-        elif value == cls.AES_SIV:
-            return AESSIVExperiment
-        elif value == cls.AES_GCM:
-            return AESGCMExperiment
-        elif value == cls.AES_OCB:
-            return AESOCBExperiment
+        return {
+            cls.Blowfish: BlowfishExperiment,
+            cls.ChaCha20: ChaCha20Experiment,
+            cls.Rc4: Rc4Experiment,
+            cls.Salsa20: Salsa20Experiment,
+            cls.AES_ECB: AESECBExperiment,
+            cls.AES_CBC: AESCBCExperiment,
+            cls.AES_CFB: AESCFBExperiment,
+            cls.AES_OFB: AESOFBExperiment,
+            cls.AES_CTR: AESCTRExperiment,
+            cls.AES_OpenPGB: AESOpenPGBExperiment,
+            cls.AES_CCM: AESCCMExperiment,
+            cls.AES_EAX: AESEAXExperiment,
+            cls.AES_SIV: AESSIVExperiment,
+            cls.AES_GCM: AESGCMExperiment,
+            cls.AES_OCB: AESOCBExperiment
+        }[value]

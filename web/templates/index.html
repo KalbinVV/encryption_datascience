@@ -9,7 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="static/style.css">
 </head>
 <body>
-<form id='selections_block' method='get'>
+<form id='experiment_form' method='get'>
 	<h3 class='legend'>Выберете режимы криптографии AES</h3>
 	<div id='selections_list'></div>
 	<p class='legend'>Допустимые размеры ключей (через запятую)</p>
@@ -22,5 +22,13 @@
 	<input type="input" name="duration_multiplier" id='duration_multiplier' class='experiment_input' value='1000'>
 	<input type='submit' class='legend' value='Сформировать отчет'>
 </form>
+<div id='result_block' style='display: none;'>
+	<h3 class='legend'>Полученные данные:</h3>
+	<div id='data_block'></div>
+	<h3 class='legend'>Нормализованные данные:</h3>
+	<div id='normalized_data_block'></div>
+	<h3 class='legend'>Характеристика:</h3>
+	<div id='characteristic_data_block'></div>
+</div>
 </body>
 </html>
