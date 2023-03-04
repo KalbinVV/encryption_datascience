@@ -76,3 +76,23 @@ class ExperimentEnum(Enum):
             cls.AES_GCM: AESGCMExperiment,
             cls.AES_OCB: AESOCBExperiment
         }[value]
+
+    @classmethod
+    def get_modes(cls):
+        return [
+            {'name': 'Blowfish', 'status': 'Main'},
+            {'name': 'ChaCha20', 'status': 'Dev'},
+            {'name': 'Salsa20', 'status': 'Dev'},
+            {'name': 'Rc4', 'status': 'Main'},
+            {'name': 'AES_ECB', 'status': 'Dev'},
+            {'name': 'AES_CBC', 'status': 'Dev'},
+            {'name': 'AES_CFB', 'status': 'Main'},
+            {'name': 'AES_OFB', 'status': 'Main'},
+            {'name': 'AES_CTR', 'status': 'Main'},
+            {'name': 'AES_OpenPGB', 'status': 'Main'},
+            {'name': 'AES_CCM', 'status': 'Main'},
+            {'name': 'AES_EAX', 'status': 'Main'},
+            {'name': 'AES_SIV', 'status': 'Dev'},
+            {'name': 'AES_GCM', 'status': 'Main'},
+            {'name': 'AES_OCB', 'status': 'Main'}
+        ]

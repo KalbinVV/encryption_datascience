@@ -1,13 +1,18 @@
 $(document).ready(function(){
-	(function fillSelectionsList() {
-		const modes = ['AES_ECB', 'AES_CBC', 'AES_CFB', 'AES_OFB',
-		               'AES_CTR', 'AES_OpenPGB', 'AES_CCM', 'AES_EAX',
-		               'AES_SIV', 'AES_GCM', 'AES_OCB', 'Rc4', 'Blowfish', 'ChaCha20', 'Salsa20']
-		const disabled_modes = ['AES_ECB', 'AES_CBC', 'AES_SIV', 'ChaCha20', 'Salsa20']
+    $.ajax({
+        url: '/get_modes',
+        success: function(data) {
+            fillSelectionsList(JSON.parse(data))
+        }
+    })
 
+	function fillSelectionsList(modes) {
 		const selections_list = $('#selections_list')
 
 		modes.forEach((mode) => {
+		    mode_name = mode['name']
+		    mode_status = mode['status']
+
 			const selection = document.createElement('div')
 			selection.setAttribute('class', 'mode_selection')
 
@@ -15,24 +20,24 @@ $(document).ready(function(){
 			const mode_label = document.createElement('label')
 
 			mode_input.setAttribute('type', 'checkbox')
-			mode_input.setAttribute('id', 'selection_' + mode)
-			mode_input.setAttribute('name', mode)
+			mode_input.setAttribute('id', 'selection_' + mode_name)
+			mode_input.setAttribute('name', mode_name)
 
-			if(!disabled_modes.includes(mode)){
+			if(mode_status == 'Main'){
 				mode_input.setAttribute('checked', true)
-			} else {
+			} else if(mode_status == 'Dev') {
 			    mode_label.setAttribute('class', 'unsupported_mode')
 			}
 
-			mode_label.setAttribute('for', mode)
-			mode_label.innerHTML = mode
+			mode_label.setAttribute('for', mode_name)
+			mode_label.innerHTML = mode_name
 
 			selection.append(mode_input)
 			selection.append(mode_label)
 
 			selections_list.append(selection)
 		})
-	})()
+	}
 
 	function getSelectedModes() {
 		const selected_modes_dom = $('.mode_selection input:checked').toArray()

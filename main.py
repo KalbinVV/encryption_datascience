@@ -18,6 +18,11 @@ def index():
     return render_template('index.html')
 
 
+@app.route('/get_modes')
+def get_modes():
+    return json.dumps(ExperimentEnum.get_modes())
+
+
 @app.route('/process_form')
 def process_form():
     try:
@@ -29,19 +34,23 @@ def process_form():
         amount_of_experiments = form_data['amount_of_experiments']
         duration_multiplier = form_data['duration_multiplier']
 
+        if amount_of_experiments > 1000:
+            raise Exception('Системное ограничение в количество испытаний (<= 1.000)')
+
+        if max_message_length > 100000:
+            raise Exception('Системное ограничение в максимальную длину строки (<100.000)')
+
         experiment_polygon = ExperimentsPolygon(modes, amount_of_experiments, keys_lengths,
                                                 max_message_length, duration_multiplier)
 
         experiments_result = experiment_polygon.process()
-
-        data_frame = pd.DataFrame(experiments_result)
 
         result_data = {
             'status': True,
             'data': experiments_result,
             'normalized': Utils.normalize(experiments_result),
             'characteristic': Utils.get_characteristic_of_dictionary(experiments_result),
-            'correlation': data_frame.corr().to_dict()
+            'correlation': pd.DataFrame(experiments_result).corr().to_dict()
         }
 
         return json.dumps(result_data)
