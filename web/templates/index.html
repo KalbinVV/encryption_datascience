@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>AES cryptography</title>
+	<script type="text/javascript" src='https://code.jquery.com/jquery-3.6.3.min.js'></script>
+	<script type="text/javascript" src='static/code.js'></script>
+	<link rel="stylesheet" type="text/css" href="static/style.css">
+</head>
+<body>
+<form id='selections_block' method='get'>
+	<h3 class='legend'>Выберете режимы криптографии AES</h3>
+	<div id='selections_list'></div>
+	<p class='legend'>Допустимые размеры ключей (через запятую)</p>
+	<input type="input" name="keys_lengths" id='keys_lengths' class='experiment_input' value='16,24,32'>
+	<p class='legend'>Максимальный размер сообщений (в битах)</p>
+	<input type="input" name="max_message_length" id='max_message_length' class='experiment_input' value='1000'>
+	<p class='legend'>Количество испытаний</p>
+	<input type="input" name="amount_of_experiments" id='amount_of_experiments' class='experiment_input' value='100'>
+	<p class='legend'>Множитель времени</p>
+	<input type="input" name="duration_multiplier" id='duration_multiplier' class='experiment_input' value='1000'>
+	<input type='submit' class='legend' value='Сформировать отчет'>
+</form>
+</body>
+</html>

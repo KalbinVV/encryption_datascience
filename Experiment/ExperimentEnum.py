@@ -38,6 +38,40 @@ class ExperimentEnum(Enum):
 
     # Make it more readable, may new enum in python3.10
     @classmethod
+    def from_string(cls, value):
+        if value == 'Blowfish':
+            return cls.Blowfish
+        elif value == 'ChaCha20':
+            return cls.ChaCha20
+        elif value == 'Rc4':
+            return cls.Rc4
+        elif value == 'Salsa20':
+            return cls.Salsa20
+        elif value == 'AES_ECB':
+            return cls.AES_ECB
+        elif value == 'AES_CBC':
+            return cls.AES_CBC
+        elif value == 'AES_CFB':
+            return cls.AES_CFB
+        elif value == 'AES_OFB':
+            return cls.AES_OFB
+        elif value == 'AES_CTR':
+            return cls.AES_CTR
+        elif value == 'AES_OpenPGB':
+            return cls.AES_OpenPGB
+        elif value == 'AES_CCM':
+            return cls.AES_CCM
+        elif value == 'AES_EAX':
+            return cls.AES_EAX
+        elif value == 'AES_SIV':
+            return cls.AES_SIV
+        elif value == 'AES_GCM':
+            return cls.AES_GCM
+        elif value == 'AES_OCB':
+            return cls.AES_OCB
+
+    # Make it more readable, may new enum in python3.10
+    @classmethod
     def from_enum(cls, value):
         if value == cls.Blowfish:
             return BlowfishExperiment
