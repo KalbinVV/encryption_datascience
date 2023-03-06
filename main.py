@@ -6,6 +6,7 @@ import pandas as pd
 
 from Experiment.ExperimentEnum import ExperimentEnum
 from Experiment.ExperimentsPolygon import ExperimentsPolygon
+from Storage.SqliteDataStorage import SqliteDataStorage
 from Utils.Utils import Utils
 
 app = Flask(__name__,
@@ -52,6 +53,8 @@ def process_form():
             'characteristic': Utils.get_characteristic_of_dictionary(experiments_result),
             'correlation': pd.DataFrame(experiments_result).corr().to_dict()
         }
+
+        print(f'Added new: {SqliteDataStorage.instance().add_data(result_data)}')
 
         return json.dumps(result_data)
 
