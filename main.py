@@ -54,6 +54,7 @@ def process_form():
         }
 
         return json.dumps(result_data)
+
     except(Exception, ) as e:
         return json.dumps({
             'status': False,
