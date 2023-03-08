@@ -5,8 +5,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Cryptography datascience</title>
 	<script type="text/javascript" src='https://code.jquery.com/jquery-3.6.3.min.js'></script>
-	<script type="text/javascript" src='static/code.js'></script>
-	<link rel="stylesheet" type="text/css" href="static/style.css">
+	<script type="text/javascript" src='/static/index/code.js'></script>
+	<link rel="stylesheet" type="text/css" href="/static/style.css">
 </head>
 <body>
 <form id='experiment_form' method='get'>
@@ -23,6 +23,8 @@
 	<p>1000 - миллисекунды</p>
 	<p>...</p>
 	<input type="input" name="duration_multiplier" id='duration_multiplier' class='experiment_input' value='1000'>
+	<p class='legend'>Максимальное количество циклов</p>
+	<input type='input' id='max_amount_of_cycles' class='experiment_input' value='10'>
 	<input type='submit' class='legend' value='Сформировать отчет'>
 </form>
 <div id='waiting_block' style='display: none;' class='legend'>
@@ -32,16 +34,6 @@
 <div id='error_block' style='display: none;' class='legend'>
 	<h3>Во время формирования отчета произошла ошибка</h3>
 	<p id='error_content'></p>
-</div>
-<div id='result_block' style='display: none;'>
-	<h3 class='legend'>Полученные данные:</h3>
-	<div id='data_block'></div>
-	<h3 class='legend'>Нормализованные данные:</h3>
-	<div id='normalized_data_block'></div>
-	<h3 class='legend'>Характеристика:</h3>
-	<div id='characteristic_data_block'></div>
-	<h3 class='legend'>Корреляция:</h3>
-	<div id='correlation_data_block'></div>
 </div>
 </body>
 </html>

@@ -4,12 +4,13 @@ from Crypto import Cipher
 
 
 class Experiment:
-    def __init__(self, message: bytes, duration_multiplier: int):
+    def __init__(self, message: bytes, duration_multiplier: int, amount_of_cycles: int):
         self.__ciphertext = None
         self.__amount_of_encrypted = None
         self.__message = message
 
         self.__duration_multiplier = duration_multiplier
+        self.__amount_of_cycles = amount_of_cycles
 
     def get_cipher(self) -> Cipher:
         pass
@@ -19,7 +20,10 @@ class Experiment:
 
     def test_encrypt_time(self) -> float:
         start_time = time.time()
-        self.__ciphertext = self.get_cipher().encrypt(self.__message)
+
+        for _ in range(self.__amount_of_cycles):
+            self.__ciphertext = self.get_cipher().encrypt(self.__message)
+
         duration = time.time() - start_time
 
         self.__amount_of_encrypted = len(self.__ciphertext)
@@ -28,7 +32,9 @@ class Experiment:
 
     def test_decrypt_time(self) -> float:
         start_time = time.time()
-        self.get_cipher().decrypt(self.__ciphertext)
+        for _ in range(self.__amount_of_cycles):
+            self.get_cipher().decrypt(self.__ciphertext)
+
         duration = time.time() - start_time
 
         return duration * self.__duration_multiplier

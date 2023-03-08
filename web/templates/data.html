@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Просмотр результата</title>
+	<script type="text/javascript" src='https://code.jquery.com/jquery-3.6.3.min.js'></script>
+	<script type="text/javascript" src='/static/data/code.js'></script>
+	<script type='text/javascript'>
+		function get_data_id() {
+			return {{ data_id }}
+		}
+	</script>
+	<link rel="stylesheet" type="text/css" href="/static/style.css">
+</head>
+<body>
+<div id='info_block'>
+	<h4 class='legend'>ID отчета: {{ data_id }}</h4>
+</div>
+<div id='result_block'>
+	<h3 class='legend'>Полученные данные:</h3>
+	<div id='data_block'></div>
+	<h3 class='legend'>Нормализованные данные:</h3>
+	<div id='normalized_data_block'></div>
+	<h3 class='legend'>Характеристика:</h3>
+	<div id='characteristic_data_block'></div>
+	<h3 class='legend'>Корреляция:</h3>
+	<div id='correlation_data_block'></div>
+</div>
+</body>
+</html>

@@ -51,37 +51,6 @@ $(document).ready(function(){
 		return selected_modes
 	}
 
-	function convertDictionaryToTable(dictionary) {
-	    const table_view = document.createElement('div')
-	    table_view.setAttribute('class', 'table_view')
-
-	    const table = document.createElement('table')
-
-	    table_view.append(table)
-
-	    const keys = Object.keys(dictionary)
-
-	    for(key in keys) {
-	        const key_name = keys[key]
-	        const row = document.createElement('tr')
-	        const row_name = document.createElement('td')
-
-	        row_name.innerHTML = key_name
-
-	        row.append(row_name)
-
-	        dictionary[key_name].forEach((data) => {
-	            const data_td = document.createElement('td')
-	            data_td.innerHTML = data
-	            row.append(data_td)
-	        })
-
-	        table.append(row)
-	    }
-
-	    return table_view
-	}
-
 	$('#experiment_form').submit(function(e){
 		e.preventDefault()
 
@@ -92,6 +61,7 @@ $(document).ready(function(){
 		const max_message_length = Number($('#max_message_length').val())
 		const amount_of_experiments = Number($('#amount_of_experiments').val())
 		const duration_multiplier = Number($('#duration_multiplier').val())
+		const max_amount_of_cycles = Number($('#max_amount_of_cycles').val())
 
 		const form_data = {
 		    data: JSON.stringify({
@@ -99,7 +69,8 @@ $(document).ready(function(){
 			    'keys_lengths': keys_lengths,
 			    'max_message_length': max_message_length,
 			    'amount_of_experiments': amount_of_experiments,
-			    'duration_multiplier': duration_multiplier
+			    'duration_multiplier': duration_multiplier,
+			    'max_amount_of_cycles': max_amount_of_cycles
 			})
 		}
 
@@ -118,11 +89,7 @@ $(document).ready(function(){
 		            $('#error_block').show()
 		            $('#error_content').html(data['error'])
 		        } else {
-		            $('#result_block').show()
-		            $('#data_block').append(convertDictionaryToTable(data['data']))
-		            $('#normalized_data_block').append(convertDictionaryToTable(data['normalized']))
-		            $('#characteristic_data_block').append(convertDictionaryToTable(data['characteristic']))
-		            $('#correlation_data_block').append(data['correlation'])
+		            window.location.href = 'data/' + data['data_id']
 		        }
 		    }
 		})

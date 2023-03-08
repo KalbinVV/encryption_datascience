@@ -5,8 +5,8 @@ from Experiment.Experiment import Experiment
 
 
 class AESEAXExperiment(Experiment):
-    def __init__(self, key: bytes, message: bytes, duration_multiplier: int = 1):
-        super().__init__(message, duration_multiplier)
+    def __init__(self, key: bytes, message: bytes, duration_multiplier: int = 1, amount_of_cycles: int = 1):
+        super().__init__(message, duration_multiplier, amount_of_cycles)
 
         self.__key = key
 
